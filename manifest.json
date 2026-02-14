@@ -1,0 +1,8 @@
+{
+  "name": "Scalping Back/Lay",
+  "short_name": "Scalping",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000"
+}
