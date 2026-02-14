@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scalping</title>
+
+<style>
+body{
+  background:#111;
+  color:white;
+  font-family:Arial;
+  text-align:center;
+  padding:20px;
+}
+input, select, button{
+  padding:10px;
+  margin:8px;
+  width:80%;
+  font-size:16px;
+  border-radius:8px;
+  border:none;
+}
+button{
+  background:#00c853;
+  color:white;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Scalping Back/Lay</h2>
+
+<select id="tipo">
+<option value="back">Entrada BACK</option>
+<option value="lay">Entrada LAY</option>
+</select>
+
+<input type="number" id="oddEntrada" placeholder="Odd de Entrada" step="0.01">
+<input type="number" id="stakeEntrada" placeholder="Stake de Entrada" step="0.01">
+<input type="number" id="oddSaida" placeholder="Odd de Saída" step="0.01">
+
+<button onclick="calcular()">CALCULAR</button>
+
+<div id="resultado"></div>
+
+<script>
+function calcular(){
+
+  var tipo = document.getElementById("tipo").value;
+  var oddEntrada = parseFloat(document.getElementById("oddEntrada").value);
+  var stakeEntrada = parseFloat(document.getElementById("stakeEntrada").value);
+  var oddSaida = parseFloat(document.getElementById("oddSaida").value);
+
+  if(isNaN(oddEntrada) || isNaN(stakeEntrada) || isNaN(oddSaida)){
+    alert("Preencha todos os campos");
+    return;
+  }
+
+  var stakeSaida = (oddEntrada * stakeEntrada) / oddSaida;
+  var lucro;
+
+  if(tipo === "back"){
+    lucro = stakeSaida - stakeEntrada;
+  } else {
+    lucro = stakeEntrada - stakeSaida;
+  }
+
+  document.getElementById("resultado").innerHTML =
+    "Stake de Saída: " + stakeSaida.toFixed(2) +
+    "<br>Lucro Equalizado: " + lucro.toFixed(2);
+}
+</script>
+
+</body>
+</html>
